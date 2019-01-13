@@ -1,0 +1,126 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2019 by Tobias Plüss <tpluess@ieee.org>
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version.  The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}[2011/06/27]
+%<package>\ProvidesPackage{tikz-blockdiagrams}[2019/01/13 v0.1 draw block diagrams using TikZ]
+%
+%<*driver>
+\documentclass[a4paper]{ltxdoc}
+\RecordChanges
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz-blockdiagrams}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{cleveref}
+\usepackage{amssymb}
+
+\DeclareUrlCommand\email{\urlstyle{tt}}
+
+\newcommand*{\pkg}{\texttt{tikz-blockdiagrams}}
+\newcommand*{\tkz}{Ti\emph{k}Z}
+
+\begin{document}
+  \DocInput{tikz-blockdiagrams.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{v0.1}{2019/01/13}{Submission to CTAN}
+%
+% \GetFileInfo{tikz-blockdiagrams.sty}
+%
+% \title{The \pkg{} package\thanks{This document corresponds to \pkg{}~\fileversion, dated~\filedate.}}
+% \author{Tobias Plüss}
+% \date{\filedate}
+% \thispagestyle{empty}
+% \maketitle
+%
+% \begin{abstract}
+%   Draw block diagrams for control systems, signal processing, communication systems
+%   and the like, using \tkz{}.
+% \end{abstract}
+%
+% \tableofcontents
+%
+% \PrintChanges
+%
+% \StopEventually{}
+%
+%
+
+% \section{Introduction}
+%
+% \begin{blockdiagram}
+% \node (a) at (0,0) {A};
+% \end{blockdiagram}
+
+% \section{Package dependencies}
+%
+%
+% \section{Acknowledgements}
+% Thanks to Millo Keller for the initial work on this package and useful hints.
+%
+% \section{Implementation}
+%    \begin{macrocode}
+\RequirePackage{tikz}
+
+\usetikzlibrary{automata, arrows, arrows.meta, calc, intersections, matrix, patterns, positioning, shapes, decorations, decorations.markings, math}
+
+
+
+\pgfkeys{
+  /blockdiagrams/.is family,
+  /blockdiagrams/.search also={/tikz},
+}
+\def\blockdiagramset{\pgfqkeys{/blockdiagrams}}
+
+\blockdiagramset{
+	auto,
+	on grid,
+	>=latex,
+}
+
+\newenvironment*{blockdiagram}{
+	\let\tikzset\blockdiagramset
+	\begin{tikzpicture}
+}{
+	\end{tikzpicture}}
+%    \end{macrocode}
+%
+% \Finale
+\endinput
